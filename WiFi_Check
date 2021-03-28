@@ -34,6 +34,8 @@
 # Settings
 # Where and what you want to call the Lockfile
 lockfile=~/scripts/WiFi_Check/WiFi_Check.pid
+# Where and what you want to call the log file
+logfile=~/scripts/WiFi_Check/log_WiFi_Check.txt
 # Which Interface do you want to check/fix
 wlan='wlan0'
 # Path update (needed to run correctly with crontab)
@@ -42,6 +44,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 echo
 echo "Starting WiFi check for $wlan"
 date
+date > $logfile
 echo 
 
 # Check to see if there is a lock file
@@ -76,7 +79,7 @@ fi
 
 echo 
 echo "Current Setting:"
-ifconfig $wlan | grep "inet "
+ifconfig $wlan | grep "inet " 2>&1 | tee -a $logfile
 echo
  
 # Check is complete, Remove Lock file and exit
