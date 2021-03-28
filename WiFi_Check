@@ -36,6 +36,8 @@
 lockfile='~/scripts/WiFi_Check/WiFi_Check.pid'
 # Which Interface do you want to check/fix
 wlan='wlan0'
+# Path update (needed to run correctly with crontab)
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ##################################################################
 echo
 echo "Starting WiFi check for $wlan"
